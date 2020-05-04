@@ -1,0 +1,39 @@
+{
+  "name": "grand-stack-demo",
+  "version": "1.0.0",
+  "author": "Mike Rourke <mike.w.rourke@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "api",
+    "ui"
+  ],
+  "scripts": {
+    "build:api": "cd api && yarn build",
+    "lint": "eslint --ext \".ts,.tsx\" api ui",
+    "prettier": "prettier --write \"{api,ui}/**/*.{css,js,ts,tsx,html}\"",
+    "prestart:api": "yarn build:api",
+    "start:api": "cd build/api && node index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit --skipLibCheck"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-unicorn": "^19.0.1",
+    "jest": "^25.5.4",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.0.5",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 2
+  }
+}

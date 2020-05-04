@@ -1,0 +1,41 @@
+schema {
+  query: Query
+}
+
+type Episode {
+  id: String!
+  title: String!
+  season: Int!
+  episode: Int!
+}
+
+type Person {
+  id: String!
+  name: String!
+  age: Int
+  sex: String
+  occupation: String
+}
+
+type Object {
+  id: String!
+  name: String!
+}
+
+type Location {
+  id: String!
+  name: String!
+}
+
+type Event {
+  id: String!
+  name: String!
+}
+
+type Query {
+  episodes: [Episode!]!
+  persons: [Person!]!
+  objects: [Object!]!
+  locations: [Location!]!
+  events: [Event!]!
+}
