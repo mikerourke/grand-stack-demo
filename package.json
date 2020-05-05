@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "build:api": "cd api && yarn build",
-    "lint": "eslint --ext \".ts,.tsx\" api ui",
-    "prettier": "prettier --write \"{api,ui}/**/*.{css,js,ts,tsx,html}\"",
+    "lint": "eslint --ext \".ts,.tsx\" api/src ui/src",
+    "prettier": "prettier --write \"{api,ui}/src/**/*.{css,js,ts,tsx,html}\"",
     "start:api": "ts-node api/src/index.ts",
     "start:ui": "parcel serve ui/src/index.html --out-dir build/ui --cache-dir build/.cache --public-url / --port 3000 --target browser",
     "start": "concurrently --kill-others \"yarn start:api\" \"yarn start:ui\"",
