@@ -47,7 +47,6 @@ CREATE (gunshotWound:Event {id: 'ck9t5vg5m000xz84e8m8540qc', name: 'Gunshot Woun
 CREATE (manslaughter:Event {id: 'ck9t5vg5m000yz84edga42hzw', name: 'Manslaughter', category: 'CRIME'})
 CREATE (murder:Event {id: 'ck9t5vg5m000zz84ehm390wr0', name: 'Murder', category: 'CRIME'})
 CREATE (poisoning:Event {id: 'ck9t5vg5m0010z84e6ofvgzam', name: 'Poisoning', category: 'CAUSEOFDEATH'})
-//CREATE (rape:Event {id: 'ck9t5vg5m0011z84e2p0fhrfl', name: 'Rape'})
 CREATE (sexualAssault:Event {id: 'ck9t5vg5m0012z84e281yf44i', name: 'Sexual Assault', category: 'CRIME'})
 CREATE (stabbing:Event {id: 'ck9t5vg5m0013z84ebh759ui1', name: 'Stabbing', category: 'CAUSEOFDEATH'})
 CREATE (strangulation:Event {id: 'ck9t5vg5m0014z84e557ehwqm', name: 'Strangulation', category: 'CAUSEOFDEATH'})
@@ -68,13 +67,6 @@ CREATE (theFootpathMurders:Episode {id: 'ck9t5vg5m001cz84e1n2w8odp', title: 'The
 CREATE (plantedEvidence:Episode {id: 'ck9t5vg5m001dz84efnh64j0z', title: 'Planted Evidence', season: 1, episode: 5})
 CREATE (southsideStrangler:Episode {id: 'ck9t5vg5m001ez84e3tahahv9', title: 'Southside Strangler', season: 1, episode: 6})
 CREATE (theWilsonMurder:Episode {id: 'ck9t5vg5m001fz84eencgal0q', title: 'The Wilson Murder', season: 1, episode: 8})
-CREATE (insectClues:Episode {id: 'ck9t5vg5m001gz84e100a5u3b', title: 'Insect Clues', season: 1, episode: 10})
-CREATE (outbreak:Episode {id: 'ck9t5vg5m001hz84e7gzc5o0m', title: 'Outbreak', season: 1, episode: 11})
-CREATE (theListMurders:Episode {id: 'ck9t5vg5m001iz84earuk12ry', title: 'The List Murders', season: 1, episode: 12})
-
-// Skipped due to not being crimes:
-// CREATE (legionnairesDisease:Episode {title: "Legionnaires' Disease", season: 1, episode: 7})
-// CREATE (deadlyNeighborhoods:Episode {id: 'ck9t5vg5m001kz84eet48ci91', title: 'Deadly Neighborhoods', season: 1, episode: 9})
 
 // -----------------------------------------------------------------------------
 // SEASON 1, EPISODE 1
@@ -256,17 +248,13 @@ CREATE
   (leicesterUniversity)-[:LOCATION_IN]->(theFootpathMurders),
 
   (strangulation)-[:EVENT_IN]->(theFootpathMurders),
-//  (rape)-[:OFFENSE_IN]->(theFootpathMurders),
   (murder)-[:EVENT_IN]->(theFootpathMurders),
 
   (richardBuckland)-[:EXONERATED_BY]->(dnaAnalysis),
   (colinPitchfork)-[:CONVICTED_OF {counts: 2}]->(murder),
-//  (colinPitchfork)-[:CONVICTED_OF {counts: 2}]->(rape),
   (colinPitchfork)-[:SENTENCED_TO {term: 0}]->(prisonSentence),
-//  (lindaMann)-[:VICTIM_OF {year: 1983}]->(rape),
   (lindaMann)-[:VICTIM_OF {year: 1983}]->(strangulation),
   (lindaMann)-[:VICTIM_OF {year: 1983}]->(murder),
-//  (dawnAshworth)-[:VICTIM_OF {year: 1986}]->(rape),
   (dawnAshworth)-[:VICTIM_OF {year: 1986}]->(strangulation),
   (dawnAshworth)-[:VICTIM_OF {year: 1986}]->(murder)
 
@@ -357,25 +345,19 @@ CREATE
   (arlingtonVirginia)-[:LOCATION_IN]->(southsideStrangler),
   (richmondVirginia)-[:LOCATION_IN]->(southsideStrangler),
 
-//  (rape)-[:OFFENSE_IN]->(southsideStrangler),
   (murder)-[:EVENT_IN]->(southsideStrangler),
   (strangulation)-[:EVENT_IN]->(southsideStrangler),
 
   (davidVasquez)-[:EXONERATED_BY]->(dnaAnalysis),
   (timothySpencer)-[:CONVICTED_OF {counts: 3}]->(burglary),
   (timothySpencer)-[:CONVICTED_OF {counts: 3}]->(murder),
-//  (timothySpencer)-[:CONVICTED_OF {counts: 3}]->(rape),
   (timothySpencer)-[:SENTENCED_TO]->(deathSentence),
-//  (susanTucker)-[:VICTIM_OF {year: 1987}]->(rape),
   (susanTucker)-[:VICTIM_OF {year: 1987}]->(strangulation),
   (susanTucker)-[:VICTIM_OF {year: 1987}]->(murder),
-//  (carolineHann)-[:VICTIM_OF {year: 1987}]->(rape),
   (carolineHann)-[:VICTIM_OF {year: 1987}]->(strangulation),
   (carolineHann)-[:VICTIM_OF {year: 1987}]->(murder),
-//  (debbieDavis)-[:VICTIM_OF {year: 1987}]->(rape),
   (debbieDavis)-[:VICTIM_OF {year: 1987}]->(strangulation),
   (debbieDavis)-[:VICTIM_OF {year: 1987}]->(murder),
-//  (dianeCho)-[:VICTIM_OF {year: 1987}]->(rape),
   (dianeCho)-[:VICTIM_OF {year: 1987}]->(strangulation),
   (dianeCho)-[:VICTIM_OF {year: 1987}]->(murder)
 
