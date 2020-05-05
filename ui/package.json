@@ -1,0 +1,22 @@
+{
+  "name": "grand-stack-demo-ui",
+  "version": "1.0.0",
+  "author": "Mike Rourke <mike.w.rourke@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.5",
+    "apollo-boost": "^0.4.7",
+    "bulma": "^0.8.2",
+    "graphql": "^15.0.0",
+    "graphql-tag": "^2.10.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-dropdown": "^1.7.0",
+    "styled-components": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "@types/styled-components": "^5.1.0"
+  }
+}

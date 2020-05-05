@@ -12,15 +12,20 @@
     "build:api": "cd api && yarn build",
     "lint": "eslint --ext \".ts,.tsx\" api ui",
     "prettier": "prettier --write \"{api,ui}/**/*.{css,js,ts,tsx,html}\"",
-    "start:api": "ts-node api/index.ts",
+    "start:api": "ts-node api/src/index.ts",
+    "start:ui": "parcel serve ui/src/index.html --out-dir build/ui --cache-dir build/.cache --public-url / --port 3000 --target browser",
+    "start": "concurrently --kill-others \"yarn start:api\" \"yarn start:ui\"",
     "typecheck": "tsc -p tsconfig.json --noEmit --skipLibCheck"
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
+    "concurrently": "^5.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-unicorn": "^19.0.1",
     "jest": "^25.5.4",
     "parcel-bundler": "^1.12.4",
@@ -35,5 +40,150 @@
     "semi": true,
     "singleQuote": false,
     "tabWidth": 2
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "react",
+      "unicorn",
+      "import",
+      "jsx-a11y"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      },
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+          ]
+        }
+      }
+    },
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true,
+      "jest": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "extraFileExtensions": [
+        ".ts",
+        ".tsx"
+      ]
+    },
+    "rules": {
+      "curly": [
+        "error",
+        "all"
+      ],
+      "indent": "off",
+      "no-unused-vars": "off",
+      "@typescript-eslint/array-type": [
+        "error",
+        {
+          "default": "array"
+        }
+      ],
+      "@typescript-eslint/ban-ts-ignore": "off",
+      "@typescript-eslint/explicit-function-return-type": [
+        "warn",
+        {
+          "allowExpressions": true,
+          "allowTypedFunctionExpressions": true
+        }
+      ],
+      "@typescript-eslint/indent": "off",
+      "@typescript-eslint/member-ordering": "error",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-inferrable-types": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-parameter-properties": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "args": "after-used",
+          "ignoreRestSiblings": true
+        }
+      ],
+      "@typescript-eslint/no-use-before-define": [
+        "error",
+        {
+          "functions": false,
+          "classes": false,
+          "variables": true
+        }
+      ],
+      "@typescript-eslint/no-var-requires": "off",
+      "import/no-default-export": "error",
+      "import/no-unresolved": [
+        "error",
+        {
+          "ignore": [
+            "~/.*"
+          ]
+        }
+      ],
+      "react/prop-types": "off",
+      "react/jsx-curly-spacing": [
+        "error",
+        {
+          "when": "never"
+        }
+      ],
+      "unicorn/catch-error-name": [
+        "error",
+        {
+          "name": "err"
+        }
+      ],
+      "unicorn/explicit-length-check": [
+        "error",
+        {
+          "non-zero": "not-equal"
+        }
+      ],
+      "unicorn/new-for-builtins": "error",
+      "unicorn/no-new-buffer": "error",
+      "unicorn/prefer-add-event-listener": "error",
+      "unicorn/throw-new-error": "error"
+    },
+    "overrides": [
+      {
+        "files": [
+          "scripts/*"
+        ],
+        "rules": {
+          "no-console": "off"
+        }
+      },
+      {
+        "files": [
+          "*.tsx"
+        ],
+        "rules": {
+          "@typescript-eslint/member-ordering": "off",
+          "import/no-default-export": "off"
+        }
+      }
+    ]
   }
 }
