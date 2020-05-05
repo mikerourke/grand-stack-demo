@@ -1,35 +1,107 @@
+directive @cypher(statement: String) on FIELD_DEFINITION
+directive @relation(
+  name: String
+  direction: String
+  from: String
+  to: String
+) on FIELD_DEFINITION | OBJECT
+
 schema {
   query: Query
 }
 
+enum Role {
+  ACCESSORY
+  ATTORNEY
+  INVESTIGATOR
+  PERPETRATOR
+  SPECIALIST
+  SUSPECT
+  VICTIM
+  WITNESS
+}
+
 type Episode {
-  id: String!
+  id: ID
   title: String!
   season: Int!
   episode: Int!
+  persons: [Person] @relation(name: "PERSON_IN", direction: "IN")
+  objects: [Object] @relation(name: "OBJECT_IN", direction: "IN")
+  locations: [Location] @relation(name: "LOCATION_IN", direction: "IN")
+  events: [Event] @relation(name: "EVENT_IN", direction: "IN")
 }
 
 type Person {
-  id: String!
+  id: ID
   name: String!
   age: Int
   sex: String
   occupation: String
+  role: Role!
+  episodes: [Episode] @relation(name: "PERSON_IN", direction: "OUT")
+  conviction: Conviction
+  sentence: Sentence
+  victimOf: VictimOf
+}
+
+enum ObjectCategory {
+  EVIDENCE
+  TOOL
+  WEAPON
 }
 
 type Object {
-  id: String!
+  id: ID
   name: String!
+  category: ObjectCategory!
+  episodes: [Episode] @relation(name: "OBJECT_IN", direction: "OUT")
 }
+
+enum LocationCategory {
+  CITY
+  LANDMARK
+}
+
 
 type Location {
-  id: String!
+  id: ID
   name: String!
+  category: LocationCategory!
+  episodes: [Episode] @relation(name: "LOCATION_IN", direction: "OUT")
 }
 
+enum EventCategory {
+  CAUSEOFDEATH
+  CRIME
+  DISPOSAL
+  MOTIVE
+}
+
+
 type Event {
-  id: String!
+  id: ID
   name: String!
+  category: EventCategory!
+  episodes: [Episode] @relation(name: "EVENT_IN", direction: "OUT")
+}
+
+type Conviction @relation(name: "CONVICTED_OF") {
+  from: Person
+  to: Event
+  counts: Int
+}
+
+type Sentence @relation(name: "SENTENCED_TO") {
+  from: Person
+  to: Event
+  term: Int
+}
+
+type VictimOf @relation(name: "VICTIM_OF") {
+  from: Person
+  to: Event
+  year: Int
 }
 
 type Query {

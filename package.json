@@ -12,8 +12,7 @@
     "build:api": "cd api && yarn build",
     "lint": "eslint --ext \".ts,.tsx\" api ui",
     "prettier": "prettier --write \"{api,ui}/**/*.{css,js,ts,tsx,html}\"",
-    "prestart:api": "yarn build:api",
-    "start:api": "cd build/api && node index.js",
+    "start:api": "ts-node api/index.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit --skipLibCheck"
   },
   "devDependencies": {
@@ -27,6 +26,7 @@
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5",
     "ts-jest": "^25.4.0",
+    "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
   "prettier": {

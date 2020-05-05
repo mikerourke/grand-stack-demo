@@ -6,12 +6,12 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf ../build/api",
-    "build": "tsc && cp package.json ../build/api && cp .env ../build/api && cp schema.graphqls ../build/api",
-    "postbuild": "cd ../build/api && npm install --production"
+    "build": "tsc && cp package.json ../build/api && cp schema.graphqls ../build/api",
+    "postbuild": "cd ../build/api && npm install --production",
+    "start": "ts-node index.ts"
   },
   "dependencies": {
     "apollo-server": "^2.12.0",
-    "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
     "neo4j-driver": "^4.0.2",
     "neo4j-graphql-js": "^2.14.0"
