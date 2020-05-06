@@ -7,7 +7,7 @@ import { GroupItemModel, GroupName } from "../typeDefs";
 type GroupsQueryResult = Record<GroupName, { id: string; name: string }[]>;
 
 interface Props {
-  onSelectGroupItem: (groupItem: GroupItemModel) => void;
+  onSelectGroupItem: (groupItem: GroupItemModel | null) => void;
 }
 
 const Search: React.FC<Props> = ({ onSelectGroupItem }) => {

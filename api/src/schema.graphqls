@@ -1,3 +1,4 @@
+# These directives are needed so my IDE plugin doesn't throw errors:
 directive @cypher(statement: String) on FIELD_DEFINITION
 directive @relation(
   name: String
@@ -41,8 +42,8 @@ type Person {
   occupation: String
   role: Role!
   episodes: [Episode] @relation(name: "PERSON_IN", direction: "OUT")
-  conviction: Conviction
-  sentence: Sentence
+  convictedOf: ConvictedOf
+  sentencedTo: SentencedTo
   victimOf: VictimOf
 }
 
@@ -87,13 +88,13 @@ type Event {
   episodes: [Episode] @relation(name: "EVENT_IN", direction: "OUT")
 }
 
-type Conviction @relation(name: "CONVICTED_OF") {
+type ConvictedOf @relation(name: "CONVICTED_OF") {
   from: Person
   to: Event
   counts: Int
 }
 
-type Sentence @relation(name: "SENTENCED_TO") {
+type SentencedTo @relation(name: "SENTENCED_TO") {
   from: Person
   to: Event
   term: Int

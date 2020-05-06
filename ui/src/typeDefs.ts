@@ -53,8 +53,8 @@ export interface PersonModel {
   sex: string;
   occupation: string;
   role: Role;
-  conviction: ConvictionModel | null;
-  sentence: SentenceModel | null;
+  convictedOf: ConvictionModel | null;
+  sentencedTo: SentenceModel | null;
   victimOf: VictimOfModel | null;
 }
 
