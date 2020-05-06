@@ -1,8 +1,8 @@
-export enum Group {
-  Person = "PERSON",
-  Object = "OBJECT",
-  Location = "LOCATION",
-  Event = "EVENT",
+export enum GroupName {
+  Person = "Person",
+  Object = "Object",
+  Location = "Location",
+  Event = "Event",
 }
 
 export enum Role {
@@ -43,6 +43,7 @@ export interface EpisodeModel {
   objects: ObjectModel[];
   locations: LocationModel[];
   events: EventModel[];
+  convicted: PersonModel | null;
 }
 
 export interface PersonModel {
@@ -76,6 +77,23 @@ export interface EventModel {
   name: string;
   category: EventCategory;
   episodes: EpisodeModel[];
+}
+
+interface NameContains {
+  name_contains: string;
+}
+
+export interface EpisodeFilter {
+  persons_some?: NameContains;
+  objects_some?: NameContains;
+  locations_some?: NameContains;
+  events_some?: NameContains;
+}
+
+export interface GroupItemModel {
+  id: string;
+  name: string;
+  groupName: GroupName;
 }
 
 interface ConvictionModel {

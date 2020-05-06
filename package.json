@@ -12,7 +12,7 @@
     "build:api": "cd api && yarn build",
     "lint": "eslint --ext \".ts,.tsx\" api/src ui/src",
     "prettier": "prettier --write \"{api,ui}/src/**/*.{css,js,ts,tsx,html}\"",
-    "start:api": "ts-node api/src/index.ts",
+    "start:api": "nodemon --watch \"api/src/**\" --exec \"ts-node\"  api/src/index.ts",
     "start:ui": "parcel serve ui/src/index.html --out-dir build/ui --cache-dir build/.cache --public-url / --port 3000 --target browser",
     "start": "concurrently --kill-others \"yarn start:api\" \"yarn start:ui\"",
     "typecheck": "tsc -p tsconfig.json --noEmit --skipLibCheck"
@@ -28,6 +28,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-unicorn": "^19.0.1",
     "jest": "^25.5.4",
+    "nodemon": "^2.0.3",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5",
     "ts-jest": "^25.4.0",

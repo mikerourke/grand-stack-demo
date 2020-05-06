@@ -1,8 +1,9 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "./Header";
-import Search from "./Search";
 import EpisodeGrid from "./EpisodeGrid";
+import Search from "./Search";
+import { GroupItemModel } from "../typeDefs";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -16,13 +17,15 @@ const Main = styled.main`
 `;
 
 const App: React.FC = () => {
+  const [groupItem, setGroupItem] = React.useState<GroupItemModel | null>(null)
+
   return (
     <>
       <GlobalStyle />
       <Header />
       <Main>
-        <Search />
-        <EpisodeGrid />
+        <Search onSelectGroupItem={setGroupItem}/>
+        <EpisodeGrid groupItem={groupItem}/>
       </Main>
     </>
   );

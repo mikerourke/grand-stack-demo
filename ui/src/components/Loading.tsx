@@ -33,12 +33,12 @@ const Spinner = styled.div`
 
   &:before {
     animation: ${spinAnimation} 1s infinite;
-    border-top-color: green;
+    border-top-color: black;
   }
 
   &:after {
     animation: ${spinAnimation} 1s infinite alternate;
-    border-bottom-color: aqua;
+    border-bottom-color: slategrey;
   }
 `;
 

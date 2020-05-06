@@ -1,10 +1,15 @@
-import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import { useLazyQuery } from "@apollo/react-hooks";
 import React from "react";
 import styled from "styled-components";
 import EpisodeCard from "./EpisodeCard";
 import Loading from "./Loading";
-import { EpisodeModel } from "../typeDefs";
+import { GET_MATCHING_EPISODES } from "../queries";
+import {
+  EpisodeFilter,
+  EpisodeModel,
+  GroupItemModel,
+  GroupName,
+} from "../typeDefs";
 
 const Grid = styled.ul`
   display: grid;
@@ -15,31 +20,31 @@ const Grid = styled.ul`
   grid-template-columns: repeat(2, 49%);
 `;
 
-const GET_EPISODES = gql`
-  query allEpisodes {
-    episodes {
-      id
-      title
-      persons {
-        name
-      }
-      objects {
-        name
-      }
-      locations {
-        name
-      }
-      events {
-        name
-      }
-    }
-  }
-`;
+interface Props {
+  groupItem: GroupItemModel | null;
+}
 
-const EpisodeGrid: React.FC = () => {
-  const { loading, data } = useQuery<{ episodes: EpisodeModel[] }>(
-    GET_EPISODES
-  );
+const EpisodeGrid: React.FC<Props> = ({ groupItem }) => {
+  const [runQuery, { loading, data }] = useLazyQuery<
+    { Episodes: EpisodeModel[] },
+    { filter: EpisodeFilter }
+  >(GET_MATCHING_EPISODES);
+
+  React.useEffect(() => {
+    const filter = { persons_some: { name_contains: "" } };
+    if (groupItem !== null) {
+      const someValue = {
+        [GroupName.Person]: "persons_some",
+        [GroupName.Object]: "objects_some",
+        [GroupName.Location]: "locations_some",
+        [GroupName.Event]: "events_some",
+      }[groupItem.groupName];
+
+      filter[someValue] = { name_contains: groupItem.name };
+    }
+
+    runQuery({ variables: { filter } });
+  }, [groupItem]);
 
   if (loading) {
     return <Loading />;
@@ -49,12 +54,10 @@ const EpisodeGrid: React.FC = () => {
     return null;
   }
 
-  console.log(data);
-
   return (
     <Grid>
-      {data.episodes.map(episode => (
-        <EpisodeCard key={episode.id} episode={episode} />
+      {data.Episodes.map(episode => (
+        <EpisodeCard key={episode.id} episode={episode} groupItem={groupItem} />
       ))}
     </Grid>
   );

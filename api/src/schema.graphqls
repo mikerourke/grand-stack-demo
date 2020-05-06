@@ -30,6 +30,7 @@ type Episode {
   objects: [Object] @relation(name: "OBJECT_IN", direction: "IN")
   locations: [Location] @relation(name: "LOCATION_IN", direction: "IN")
   events: [Event] @relation(name: "EVENT_IN", direction: "IN")
+  convicted: Person @cypher(statement: "MATCH (this)<-[:PERSON_IN]-(p:Person)-[:CONVICTED_OF]->(e:Event) RETURN p")
 }
 
 type Person {
@@ -104,10 +105,26 @@ type VictimOf @relation(name: "VICTIM_OF") {
   year: Int
 }
 
+input NameFilter {
+  name: String!
+}
+
+input NameContains {
+  name_contains: String
+}
+
+input _EpisodeFilter {
+  persons_some: NameContains
+  objects_some: NameContains
+  locations_some: NameContains
+  events_some: NameContains
+}
+
 type Query {
-  episodes: [Episode!]!
-  persons: [Person!]!
-  objects: [Object!]!
-  locations: [Location!]!
-  events: [Event!]!
+  Episode: [Episode!]!
+  Episodes(filter: _EpisodeFilter!): [Episode!]!
+  Person: [Person!]!
+  Object: [Object!]!
+  Location: [Location!]!
+  Event: [Event!]!
 }

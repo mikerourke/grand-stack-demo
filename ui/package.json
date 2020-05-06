@@ -9,13 +9,17 @@
     "bulma": "^0.8.2",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
+    "lodash.sortby": "^4.7.0",
     "react": "^16.13.1",
+    "react-autosuggest": "^10.0.2",
     "react-dom": "^16.13.1",
     "react-dropdown": "^1.7.0",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
+    "@types/lodash.sortby": "^4.7.6",
     "@types/react": "^16.9.34",
+    "@types/react-autosuggest": "^9.3.13",
     "@types/react-dom": "^16.9.7",
     "@types/styled-components": "^5.1.0"
   }
