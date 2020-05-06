@@ -34,7 +34,6 @@ CREATE (knife:Object {id: 'ck9t5vg5m000oz84ec67p67ii', name: 'Knife', category: 
 CREATE (bloodStains:Object {id: 'ck9t5vg5m000pz84eb795b2in', name: 'Blood Stains', category: 'EVIDENCE'})
 CREATE (fibers:Object {id: 'ck9t5vg5m000qz84e9c7bgpnh', name: 'Fibers', category: 'EVIDENCE'})
 CREATE (hair:Object {id: 'ck9t5vg5m000rz84e7mdn5kfw', name: 'Hair', category: 'EVIDENCE'})
-CREATE (semen:Object {id: 'ck9t5vg5m000sz84e9cfzhnhe', name: 'Semen', category: 'EVIDENCE'})
 CREATE (shoeImpression:Object {id: 'ck9t5vg5m000tz84egmvyh2lf', name: 'Shoe Impression', category: 'EVIDENCE'})
 
 // -----------------------------------------------------------------------------
@@ -47,7 +46,6 @@ CREATE (gunshotWound:Event {id: 'ck9t5vg5m000xz84e8m8540qc', name: 'Gunshot Woun
 CREATE (manslaughter:Event {id: 'ck9t5vg5m000yz84edga42hzw', name: 'Manslaughter', category: 'CRIME'})
 CREATE (murder:Event {id: 'ck9t5vg5m000zz84ehm390wr0', name: 'Murder', category: 'CRIME'})
 CREATE (poisoning:Event {id: 'ck9t5vg5m0010z84e6ofvgzam', name: 'Poisoning', category: 'CAUSEOFDEATH'})
-CREATE (sexualAssault:Event {id: 'ck9t5vg5m0012z84e281yf44i', name: 'Sexual Assault', category: 'CRIME'})
 CREATE (stabbing:Event {id: 'ck9t5vg5m0013z84ebh759ui1', name: 'Stabbing', category: 'CAUSEOFDEATH'})
 CREATE (strangulation:Event {id: 'ck9t5vg5m0014z84e557ehwqm', name: 'Strangulation', category: 'CAUSEOFDEATH'})
 
@@ -238,7 +236,6 @@ CREATE
   (ianKelly)-[:PERSON_IN]->(theFootpathMurders),
 
   (scarf)-[:OBJECT_IN]->(theFootpathMurders),
-  (semen)-[:OBJECT_IN]->(theFootpathMurders),
   (dnaAnalysis)-[:OBJECT_IN]->(theFootpathMurders),
   (geneticDragnet)-[:OBJECT_IN]->(theFootpathMurders),
 
@@ -335,7 +332,6 @@ CREATE
   (hair)-[:OBJECT_IN]->(southsideStrangler),
   (washcloth)-[:OBJECT_IN]->(southsideStrangler),
   (brokenGlass)-[:OBJECT_IN]->(southsideStrangler),
-  (semen)-[:OBJECT_IN]->(southsideStrangler),
   (shoeImpression)-[:OBJECT_IN]->(southsideStrangler),
   (behavioralAnalysis)-[:OBJECT_IN]->(southsideStrangler),
   (bloodTypeAnalysis)-[:OBJECT_IN]->(southsideStrangler),
